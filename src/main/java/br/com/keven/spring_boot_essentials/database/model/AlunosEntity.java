@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="alunos")
@@ -27,5 +30,8 @@ public class AlunosEntity {
     @OneToOne
     @JoinColumn(name = "avaliacao_fisica_id")
     private AvaliacoesFisicasEntity avaliacoesFisicas;
+
+    @OneToMany(mappedBy = "aluno")
+    private Set<TreinosEntity> treino = new HashSet<>();
 
 }
