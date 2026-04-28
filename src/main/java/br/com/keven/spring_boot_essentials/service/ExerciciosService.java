@@ -20,8 +20,11 @@ public class ExerciciosService {
     public void save(ExercicioDto exercicioDto){
         ExerciciosEntity exercicio = exerciciosRepository.save(ExerciciosEntity.builder()
                         .nome(exercicioDto.getNome())
-                        .grupoMuscula(exercicioDto.getGrupoMuscular())
+                        .grupoMuscular(exercicioDto.getGrupoMuscular())
                 .build());
         exerciciosRepository.save(exercicio);
+    }
+    public List<ExerciciosEntity> getExercicioByGrupoMuscular(String grupoMuscular){
+        return exerciciosRepository.findAllByGrupoMuscular(grupoMuscular);
     }
 }
