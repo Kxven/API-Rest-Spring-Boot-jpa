@@ -27,5 +27,15 @@ public class AlunoService {
                         .email(alunoDTO.getEmail())
                 .build());
     }
+    public AvaliacoesFisicasEntity getAlunoAvaliacao(Integer alunoId) throws NotFoundException{
+        AlunosEntity aluno = alunosRepository.findById(alunoId)
+                .orElseThrow(() -> new NotFoundException("Aluno não encontrado"));
+
+        AvaliacoesFisicasEntity avaliacao = aluno.getAvaliacoesFisicas();
+        if (avaliacao == null){
+            throw new NotFoundException("Avaliação fisica não encontrada para este aluno");
+        }
+        return avaliacao;
+    }
 
 }
