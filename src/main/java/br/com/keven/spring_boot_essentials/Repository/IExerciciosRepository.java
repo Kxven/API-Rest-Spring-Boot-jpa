@@ -11,14 +11,13 @@ import java.util.List;
 public interface IExerciciosRepository extends JpaRepository<ExerciciosEntity, Integer> {
     List<ExerciciosEntity> findAllByGrupoMuscular(String grupoMuscular);
 
-    @Query(value = "SELECT e FROM ExerciciosEntity WHERE UPPER(e.grupoMuscular) = UPPER(:grupoMuscular)")
+    @Query("SELECT e FROM ExerciciosEntity e WHERE UPPER(e.grupoMuscular) = UPPER(:grupoMuscular)")
     List<ExerciciosEntity> findAllByGrupoMuscularJpql(@Param("grupoMuscular") String grupoMuscular);
 
-
-    @NativeQuery(value = """
-        SELECT e
-        FROM exercicios e 
-        WHERE UPPER(e.grupo_muscular) = UPPER(:grupoMuscular)
-    """)
+    @Query(value = """
+    SELECT *
+    FROM exercicios e
+    WHERE UPPER(e.grupo_muscular) = UPPER(:grupoMuscular)
+    """, nativeQuery = true)
     List<ExerciciosEntity> findAllByGrupoMuscularNativeQuery(@Param("grupoMuscular") String grupoMuscular);
 }
