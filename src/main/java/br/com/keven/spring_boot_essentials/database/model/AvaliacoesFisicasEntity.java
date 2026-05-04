@@ -7,7 +7,7 @@ import java.beans.BeanInfo;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="avaliacoes-fisicas")
+@Table(name="avaliacoes_fisicas")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
